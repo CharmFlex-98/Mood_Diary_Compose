@@ -1,4 +1,4 @@
-package com.example.mooddiarycompose.home.navigation
+package com.example.mooddiarycompose.core.destinations
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -6,13 +6,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.mooddiarycompose.home.ui.OverViewScreen
 import com.example.mooddiarycompose.home.ui.StatisticScreen
-import com.example.mooddiarycompose.util.Destination
 
 class HomeDestination(
     navController: NavController,
 ) : Destination(navController) {
-    override val routeName = ROOT
-    override val defaultDestination = OVERVIEW
+    override val routeName = root
+    override val defaultDestination = overview
 
     override fun NavGraphBuilder.buildGraph() {
         navigation(startDestination = defaultDestination, route = routeName) {
@@ -22,24 +21,22 @@ class HomeDestination(
     }
 
     private fun NavGraphBuilder.buildOverviewScreenGraph() {
-        composable(OVERVIEW) {
+        composable(route = overview, arguments = listOf(ShowBottomNavArg.namedNavArgument)) {
             OverViewScreen()
         }
     }
 
     private fun NavGraphBuilder.buildStatisticScreenGraph() {
-        composable(STATISTIC) {
+        composable(route = statistic, arguments = listOf(ShowBottomNavArg.namedNavArgument)) {
             StatisticScreen()
         }
     }
 
-    fun navigateToOverViewScreen() {
-    }
 
     companion object {
-        const val ROOT = "home"
-        const val OVERVIEW = "$ROOT/overview"
-        const val STATISTIC = "$ROOT/statistic"
+        const val root = "home"
+        const val overview = "$root/overview"
+        const val statistic = "$root/statistic"
     }
 
 
