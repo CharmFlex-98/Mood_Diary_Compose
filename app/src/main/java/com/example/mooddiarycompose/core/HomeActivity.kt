@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
-            Root(destinations = destinations(navController = navController))
+            Root(navController = navController, destinations = destinations(navController = navController))
         }
     }
 
@@ -56,6 +56,11 @@ class MainActivity : ComponentActivity() {
             SettingDestination(navController)
         )
     }
+}
+
+@Composable
+@Preview
+fun RootPreview() {
 }
 
 
